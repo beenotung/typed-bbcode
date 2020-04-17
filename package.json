@@ -9,8 +9,8 @@
     "url": "https://beeno-tung.surge.sh"
   },
   "license": "BSD-2-Clause",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/bbcode.js",
+  "types": "dist/bbcode.d.ts",
   "scripts": {
     "test": "npm run rawtest",
     "clean": "rimraf dist",
