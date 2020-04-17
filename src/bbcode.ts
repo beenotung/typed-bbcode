@@ -19,6 +19,13 @@ function i(code: string) {
     .replace(/\[\/i]/g, `</i>`)
 }
 
+function b(code: string) {
+  return code
+    .replace(/\[b]/g, `<b>`)
+    .replace(/\[b\=s]/g, `<b>`)
+    .replace(/\[\/b]/g, `</b>`)
+}
+
 function attr(o: {
   start: string
   end: string
@@ -104,6 +111,7 @@ export function bbcode_to_html(
   r(font)
   r(color)
   r(i)
+  r(b)
   r(url)
   images = attachments
   r(attach)
