@@ -1,6 +1,6 @@
 function run(f: (code: string) => string, code: string) {
-  for (; ;) {
-    let res = f(code)
+  for (;;) {
+    const res = f(code)
     if (res === code) {
       return code
     }
@@ -20,11 +20,11 @@ function i(code: string) {
 }
 
 function attr(o: {
-  start: string;
-  end: string;
-  f: (attr: string, body: string) => string;
+  start: string
+  end: string
+  f: (attr: string, body: string) => string
 }) {
-  return function(code: string) {
+  return function (code: string) {
     let start = code.indexOf(o.start)
     if (start === -1) {
       return code
@@ -33,8 +33,8 @@ function attr(o: {
     if (end === -1) {
       return code
     }
-    let attr = code.substring(start + o.start.length, end)
-    let prefix = code.substring(0, start)
+    const attr = code.substring(start + o.start.length, end)
+    const prefix = code.substring(0, start)
     start = end + 1
     if (start >= code.length) {
       return code
@@ -43,20 +43,20 @@ function attr(o: {
     if (end === -1) {
       return code
     }
-    let body = code.substring(start, end)
-    let suffix = code.substring(end + o.end.length)
-    let span = o.f(attr, body)
+    const body = code.substring(start, end)
+    const suffix = code.substring(end + o.end.length)
+    const span = o.f(attr, body)
     return prefix + span + suffix
   }
 }
 
-let size = attr({
+const size = attr({
   start: '[size=',
   end: '[/size]',
   f: (attr, body) => `<span style="font-size: ${attr}">${body}</span>`,
 })
 
-let font = attr({
+const font = attr({
   start: '[font=',
   end: '[/font]',
   f: (attr, body) => {
@@ -65,7 +65,7 @@ let font = attr({
   },
 })
 
-let color = attr({
+const color = attr({
   start: '[color=',
   end: '[/color]',
   f: (attr, body) => {
@@ -76,24 +76,27 @@ let color = attr({
   },
 })
 
-let url = attr({
+const url = attr({
   start: '[url=',
   end: '[/url]',
   f: (attr, body) => `<a href="${attr}">${body}</a>`,
 })
 
 let images: string[] = []
-let attach = attr({
+const attach = attr({
   start: '[attach',
   end: '[/attach]',
   f: () => {
-    let src = images.shift()
+    const src = images.shift()
     return `<ion-img src="${src}"></ion-img>`
   },
 })
 
-export function bbcode_to_html(code: string, attachments: string[] = []): string {
-  let r = (f: (code: string) => string) => {
+export function bbcode_to_html(
+  code: string,
+  attachments: string[] = [],
+): string {
+  const r = (f: (code: string) => string) => {
     code = run(f, code)
   }
   r(img)
@@ -106,4 +109,3 @@ export function bbcode_to_html(code: string, attachments: string[] = []): string
   r(attach)
   return code
 }
-
