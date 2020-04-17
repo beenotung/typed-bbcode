@@ -2,7 +2,11 @@
   "name": "typed-bbcode-to-html",
   "version": "0.1.1",
   "description": "Convert BBCode (bulletin board code) into HTML",
-  "keywords": [],
+  "keywords": [
+    "bbcode",
+    "html",
+    "converter"
+  ],
   "author": "Beeno Tung <aabbcc1241@yahoo.com.hk> (https://beeno-tung.surge.sh)",
   "license": "BSD-2-Clause",
   "main": "dist/bbcode.js",
