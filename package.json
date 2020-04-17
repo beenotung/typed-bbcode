@@ -15,7 +15,7 @@
     "prebuild": "npm run clean",
     "build": "tsc -p tsconfig.build.json",
     "pretest": "npm run format && npm run build",
-    "rawtest": "ts-node test/index.ts",
+    "rawtest": "ts-node test/bbcode-test.ts",
     "prepublishOnly": "npm run rawtest && npm run build"
   },
   "husky": {
