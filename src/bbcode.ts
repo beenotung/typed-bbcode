@@ -117,3 +117,21 @@ export function bbcode_to_html(
   r(attach)
   return code
 }
+
+export function extract_images_from_bbcode(
+  code: string,
+  imgs: string[] = [],
+): string[] {
+  const ss = code.split('[img]')
+  if (ss.length === 1) {
+    return imgs
+  }
+  ss.forEach(s => {
+    const ss = s.split('[/img]')
+    if (ss.length === 1) {
+      return
+    }
+    imgs.push(ss[0])
+  })
+  return imgs
+}
