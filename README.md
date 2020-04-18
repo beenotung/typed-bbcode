@@ -71,7 +71,13 @@ let attachments = [
   '/attachments/202004/17/image2.jpg',
 ]
 
-let output = bbcode_to_html(code, attachments) // optionally supply the attachment list
+// optionally supply the attachment list
+let output = bbcode_to_html(code, {
+  attachment: {
+    links: attachments,
+    mode: 'img',
+  },
+})
 /*
 some desc
 <img src="/attachments/202004/17/image1.jpg">

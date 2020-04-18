@@ -92,20 +92,35 @@ const url = attr({
   f: (attr, body) => `<a href="${attr}">${body}</a>`,
 })
 
-let images: string[] = []
+let attachments: string[] = []
+let attachmentMode: AttachmentMode
 const attach = attr({
   start: '[attach',
   end: '[/attach]',
-  f: () => {
-    const src = images.shift()
-    return `<ion-img src="${src}"></ion-img>`
+  f: (_attr, body) => {
+    const src = attachments.shift()
+    switch (attachmentMode) {
+      case 'img':
+        return `<img src="${src}">`
+        break
+      case 'ion-img':
+        return `<ion-img src="${src}"></ion-img>`
+      case 'a':
+        return `<a src="${src}">${src}</a>`
+      default:
+        return `[attach]${body}[/attach]` // original format
+    }
   },
 })
+export type AttachmentMode = 'img' | 'ion-img' | 'a'
+export type HTMLOptions = {
+  attachment?: {
+    links: string[]
+    mode: AttachmentMode
+  }
+}
 
-export function bbcode_to_html(
-  code: string,
-  attachments: string[] = [],
-): string {
+export function bbcode_to_html(code: string, options?: HTMLOptions): string {
   const r = (f: (code: string) => string) => {
     code = run(f, code)
   }
@@ -116,8 +131,11 @@ export function bbcode_to_html(
   r(i)
   r(b)
   r(url)
-  images = attachments
-  r(attach)
+  if (options?.attachment) {
+    attachments = options.attachment.links
+    attachmentMode = options.attachment.mode
+    r(attach)
+  }
   return code
 }
 

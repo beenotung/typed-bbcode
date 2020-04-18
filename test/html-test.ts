@@ -3,7 +3,12 @@ import path from 'path'
 import { bbcode_to_html } from '../src/bbcode'
 
 const input = fs.readFileSync(path.join('test', 'in.html')).toString()
-const output = bbcode_to_html(input)
+const output = bbcode_to_html(input, {
+  attachment: {
+    links: ['http://host.net/image-1.jpg'],
+    mode: 'img',
+  },
+})
 const outFile = path.join('test', 'out.html')
 fs.writeFileSync(
   outFile,
