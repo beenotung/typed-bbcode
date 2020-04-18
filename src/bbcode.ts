@@ -9,7 +9,10 @@ function run(f: (code: string) => string, code: string) {
 }
 
 function img(code: string) {
-  return code.replace(/\[img]/g, `<img src="`).replace(/\[\/img]/g, `">`)
+  return code
+    .replace(/\[img]/g, `<img src="`)
+    .replace(/\[img=.*?]/g, `<img src="`)
+    .replace(/\[\/img]/g, `">`)
 }
 
 function i(code: string) {
@@ -131,7 +134,12 @@ export function extract_images_from_bbcode(
     if (ss.length === 1) {
       return
     }
-    imgs.push(ss[0])
+    let img = ss[0]
+    if (img.includes('[img=')) {
+      img = img.split('[img=')[1]
+      img = img.substring(img.indexOf(']') + 1)
+    }
+    imgs.push(img)
   })
   return imgs
 }
