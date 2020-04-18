@@ -1,8 +1,8 @@
-# typed-bbcode-to-html
+# typed-bbcode
 
 Convert BBCode (bulletin board code) into HTML
 
-[![npm Package Version](https://img.shields.io/npm/v/typed-bbcode-to-html.svg?maxAge=2592000)](https://www.npmjs.com/package/typed-bbcode-to-html)
+[![npm Package Version](https://img.shields.io/npm/v/typed-bbcode.svg?maxAge=2592000)](https://www.npmjs.com/package/typed-bbcode)
 
 ## Supported BBCode
 - img
@@ -16,26 +16,47 @@ Convert BBCode (bulletin board code) into HTML
 
 ## Installation
 ```bash
-npm i --save typed-bbcode-to-html
+npm i --save typed-bbcode
 ```
 
 ## Usage
 
-### Conversion without attachments
+### Extract image links from bbcode
+```typescript
+import { extract_images_from_bbcode } from 'typed-bbcode'
+
+const text = `
+some text [img]http://host.net/image-1.jpg[/img] [img]http://host.net/image-2.jpg[/img]
+more text
+[img]http://host.net/image-3.jpg[/img]
+and more
+`
+const imgs = extract_images_from_bbcode(text)
+/*
+[
+  'http://host.net/image-1.jpg',
+  'http://host.net/image-2.jpg',
+  'http://host.net/image-3.jpg',
+]
+*/
+```
+
+### Conversion bbcode to html
+#### Without attachments
 ```typescript
 import fs from 'fs'
 let input = fs.readFileSync('test/in.html').toString() // load string input
 
-import { bbcode_to_html } from 'typed-bbcode-to-html'
+import { bbcode_to_html } from 'typed-bbcode'
 let output = bbcode_to_html(input) // output is string
 fs.writeFileSync('test/out.html', output)
 
 
 ```
 
-### Conversion with attachments
+#### With attachments
 ```typescript
-import { bbcode_to_html } from 'typed-bbcode-to-html'
+import { bbcode_to_html } from 'typed-bbcode'
 
 let code = `
 some desc

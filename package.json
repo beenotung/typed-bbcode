@@ -1,5 +1,5 @@
 {
-  "name": "typed-bbcode-to-html",
+  "name": "typed-bbcode",
   "version": "0.1.2",
   "description": "Convert BBCode (bulletin board code) into HTML",
   "keywords": [
