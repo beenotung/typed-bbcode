@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/typed-bbcode-to-html.iml" filepath="$PROJECT_DIR$/.idea/.idea/typed-bbcode-to-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/typed-bbcode.iml" filepath="$PROJECT_DIR$/.idea/typed-bbcode.iml" />
     </modules>
   </component>
 </project>

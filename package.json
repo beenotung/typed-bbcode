@@ -45,10 +45,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beenotung/typed-bbcode-to-html.git"
+    "url": "git+https://github.com/beenotung/typed-bbcode.git"
   },
   "bugs": {
-    "url": "https://github.com/beenotung/typed-bbcode-to-html/issues"
+    "url": "https://github.com/beenotung/typed-bbcode/issues"
   },
-  "homepage": "https://github.com/beenotung/typed-bbcode-to-html#readme"
+  "homepage": "https://github.com/beenotung/typed-bbcode#readme"
 }
